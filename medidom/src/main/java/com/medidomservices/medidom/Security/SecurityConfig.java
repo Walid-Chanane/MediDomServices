@@ -13,7 +13,7 @@ public class SecurityConfig {
     public UserDetailsManager userDetailsManager(DataSource dataSource){
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
-        jdbcUserDetailsManager.setUsersByUsernameQuery("select email, pass_word, active from User "
+        jdbcUserDetailsManager.setUsersByUsernameQuery("select email, password, active from User "
         + " where email=?");
 
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select email, role "

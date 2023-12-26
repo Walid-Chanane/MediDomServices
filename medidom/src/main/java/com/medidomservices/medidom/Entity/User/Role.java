@@ -2,6 +2,7 @@ package com.medidomservices.medidom.Entity.User;
 
 public enum Role {
     USER,
-    EMPLOYEE,
+    DOCTOR,
+    NURSE,
     ADMIN
 }
