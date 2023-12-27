@@ -1,0 +1,27 @@
+package com.medidomservices.medidom.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.medidomservices.medidom.Entity.User.Employee;
+import com.medidomservices.medidom.Entity.User.Patient;
+import com.medidomservices.medidom.Entity.User.User;
+import com.medidomservices.medidom.Repositories.UserRepository;
+
+@Controller
+public class UserController {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("/redirect")
+    public String redirectUser(@AuthenticationPrincipal UserDetails userDetails){
+        User user = userRepository.findByEmail(userDetails.getUsername());
+        if(user instanceof Patient) return "ImAPatient.html";
+        if(user instanceof Employee) return "ImAnEmployee.html";
+        return null;
+    }
+}

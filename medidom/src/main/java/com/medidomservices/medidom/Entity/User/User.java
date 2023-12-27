@@ -8,11 +8,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -37,23 +37,24 @@ public class User implements UserDetails{
 
     protected long phoneNumber;
 
+    @Column(unique = true)
     protected String email;
 
-    protected String pass_word;
+    protected String password;
 
     protected int active;
 
     @Enumerated(EnumType.STRING)
     protected Role role;
 
-    public User(String firstName, String lastName, Date dob, Long phoneNumber, String email, String pass_word,
+    public User(String firstName, String lastName, Date dob, Long phoneNumber, String email, String password,
             Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.pass_word = pass_word;
+        this.password = password;
         this.role = role;
         this.active=1;
     }
@@ -70,7 +71,7 @@ public class User implements UserDetails{
 
     @Override
     public String getPassword() {
-        return pass_word;
+        return password;
     }
 
     @Override

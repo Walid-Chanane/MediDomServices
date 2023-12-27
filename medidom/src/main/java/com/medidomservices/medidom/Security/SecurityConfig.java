@@ -4,8 +4,10 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
@@ -13,7 +15,7 @@ public class SecurityConfig {
     public UserDetailsManager userDetailsManager(DataSource dataSource){
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
-        jdbcUserDetailsManager.setUsersByUsernameQuery("select email, pass_word, active from User "
+        jdbcUserDetailsManager.setUsersByUsernameQuery("select email, password, active from User "
         + " where email=?");
 
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select email, role "
@@ -22,4 +24,10 @@ public class SecurityConfig {
         return jdbcUserDetailsManager;
     }
 
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+        http.formLogin(form->
+        form.defaultSuccessUrl("/redirect"));
+        return http.build();
+    }
 }
