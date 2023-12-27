@@ -26,7 +26,7 @@ public class Patient extends User{
 
     private String specialMedicalTreatment;
 
-    @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "patientId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ConsultationRequest> requests;
     
 
@@ -53,7 +53,7 @@ public class Patient extends User{
 
         requests.add(request);
 
-        request.setUserId(this);
+        request.setPatientId(this);
     }
     
 }

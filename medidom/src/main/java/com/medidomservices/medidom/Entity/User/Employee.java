@@ -1,8 +1,15 @@
 package com.medidomservices.medidom.Entity.User;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.medidomservices.medidom.Entity.ConsultationRequest;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -21,6 +28,9 @@ public class Employee extends User{
 
     private int rating;
 
+    @OneToMany(mappedBy = "employeeId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<ConsultationRequest> requests;
+
     public Employee(String firstName, String lastName, Date dob, Long phoneNumber, String email, String password,
             Role role, int experience, String mailingAddress, String specialty, int rating) {
         super(firstName, lastName, dob, phoneNumber, email, password, role);
@@ -38,4 +48,12 @@ public class Employee extends User{
        + ", experience=" + experience + ", mailingAddress=" + mailingAddress + ", specialty: " + specialty + "]";
     }
 
+    public void addRequest(ConsultationRequest request){
+        if(requests == null)
+        requests = new ArrayList<>();
+
+        requests.add(request);
+
+        request.setEmployeeId(this);
+    }
 }

@@ -2,6 +2,7 @@ package com.medidomservices.medidom.Entity;
 
 import java.sql.Date;
 
+import com.medidomservices.medidom.Entity.User.Employee;
 import com.medidomservices.medidom.Entity.User.Patient;
 
 import jakarta.persistence.CascadeType;
@@ -28,9 +29,15 @@ public class ConsultationRequest {
 
     private Service service;
 
+    private Boolean done;
+
     @ManyToOne
-    @JoinColumn(name = "id")
-    private Patient userId;
+    @JoinColumn(name = "Patient.id")
+    private Patient patientId;
+
+    @ManyToOne
+    @JoinColumn(name = "Employee.id")
+    private Employee employeeId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "feedback_id")
@@ -40,10 +47,11 @@ public class ConsultationRequest {
     @JoinColumn(name = "report_id")
     private Report report;
 
-    public ConsultationRequest(Date requestDate, Service service, Patient userId) {
+    public ConsultationRequest(Date requestDate, Service service, Patient patientId) {
         this.requestDate = requestDate;
         this.service = service;
-        this.userId = userId;
+        this.patientId = patientId;
+        this.done = false;
     }
 
     @Override
