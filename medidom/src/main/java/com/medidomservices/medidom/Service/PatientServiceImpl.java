@@ -22,7 +22,20 @@ public class PatientServiceImpl implements PatientService{
     private EmployeeRepository employeeRepository;
 
     @Override
-    public ConsultationRequest assignEmployeeToRequest(ConsultationRequest userRequest) {
+    public List<ConsultationRequest> findPatientRequests(String email) {
+        List<ConsultationRequest> requests = patientRepository.findByEmail(email).getRequests();
+        requests.removeIf(i -> i.getFeedback() != null);
+        return requests;
+    }
+
+    @Override
+    public Patient findByEmail(String email) {
+        return patientRepository.findByEmail(email);
+    }
+
+    @Override
+    public ConsultationRequest assignEmployeeToRequest(String email, ConsultationRequest userRequest) {
+        userRequest.setPatientId(patientRepository.findByEmail(email));
         List<Employee> employeeList = employeeRepository.findBySpecialty("first");
         System.out.println(employeeList);
         int i;
@@ -53,9 +66,14 @@ public class PatientServiceImpl implements PatientService{
     @Override
     public void deleteRequestById(String email,int theId) {
         Patient patient = patientRepository.findByEmail(email);
-        
         patient.getRequests().removeIf(i -> i.getRequest_id() == theId);
-            
+        patientRepository.save(patient);
+    }
+
+    @Override
+    public ConsultationRequest getRequestById(String email, int theId) {
+        Patient patient = patientRepository.findByEmail(email);
+        return patient.getRequests().stream().filter(i -> i.getRequest_id() == theId).findFirst().get();
     }
 
 }

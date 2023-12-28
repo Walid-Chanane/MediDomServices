@@ -58,10 +58,10 @@ public class MedidomApplication {
 			List<Employee> listEmployee = employeeRepository.findAll();
 			System.out.println(listEmployee.get(0).getRequests());
 
-			ConsultationRequest r1 = userService.assignEmployeeToRequest(request);
-			ConsultationRequest r2 = userService.assignEmployeeToRequest(request2);
-			ConsultationRequest r3 = userService.assignEmployeeToRequest(request3);
-			ConsultationRequest r4 = userService.assignEmployeeToRequest(request4);
+			ConsultationRequest r1 = userService.assignEmployeeToRequest("john@gmail.com",request);
+			ConsultationRequest r2 = userService.assignEmployeeToRequest("john@gmail.com",request2);
+			ConsultationRequest r3 = userService.assignEmployeeToRequest("john@gmail.com",request3);
+			ConsultationRequest r4 = userService.assignEmployeeToRequest("john@gmail.com",request4);
 
 			List<Employee> listEmployee3 = employeeRepository.findAll();
 			System.out.println(listEmployee3.get(0).getRequests());
