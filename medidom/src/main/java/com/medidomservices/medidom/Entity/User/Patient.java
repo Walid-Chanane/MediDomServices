@@ -49,7 +49,7 @@ public class Patient extends User{
 
     public void addRequest(ConsultationRequest request){
         if(requests == null)
-        requests = new ArrayList<>();
+        requests = new ArrayList<ConsultationRequest>();
 
         requests.add(request);
 

@@ -54,6 +54,16 @@ public class ConsultationRequest {
         this.done = false;
     }
 
+    public String getEmployeeId(){
+        if(employeeId == null) return null;
+        else return employeeId.getEmail();
+    }
+
+    public String getPatientId(){
+        if(patientId == null) return null;
+        else return patientId.getEmail();
+    }
+
     @Override
     public String toString() {
         return "ConsultationRequest [request_id=" + request_id + ", requestDate=" + requestDate + ", service=" + service

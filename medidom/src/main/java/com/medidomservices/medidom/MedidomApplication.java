@@ -15,10 +15,11 @@ import com.medidomservices.medidom.Entity.Service;
 import com.medidomservices.medidom.Entity.User.Employee;
 import com.medidomservices.medidom.Entity.User.Patient;
 import com.medidomservices.medidom.Entity.User.Role;
+import com.medidomservices.medidom.Entity.User.User;
 import com.medidomservices.medidom.Repositories.EmployeeRepository;
 import com.medidomservices.medidom.Repositories.PatientRepository;
 import com.medidomservices.medidom.Repositories.UserRepository;
-import com.medidomservices.medidom.Service.UserService;
+import com.medidomservices.medidom.Service.PatientService;
 
 @SpringBootApplication
 public class MedidomApplication {
@@ -28,7 +29,7 @@ public class MedidomApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(UserService userService, UserRepository userRepository,EmployeeRepository employeeRepository, PatientRepository patientRepository){
+	public CommandLineRunner commandLineRunner(PatientService userService, UserRepository userRepository,EmployeeRepository employeeRepository, PatientRepository patientRepository){
 		return runner -> {
 			ConsultationRequest request = new ConsultationRequest(new Date(222222222222000L), Service.first, null);
 			ConsultationRequest request2 = new ConsultationRequest(new Date(222222222222000L), Service.second, null);
@@ -57,32 +58,32 @@ public class MedidomApplication {
 			List<Employee> listEmployee = employeeRepository.findAll();
 			System.out.println(listEmployee.get(0).getRequests());
 
-			String r1 = userService.assignEmployeeToRequest(request);
-			String r2 = userService.assignEmployeeToRequest(request2);
-			String r3 = userService.assignEmployeeToRequest(request3);
-			String r4 = userService.assignEmployeeToRequest(request4);
+			ConsultationRequest r1 = userService.assignEmployeeToRequest(request);
+			ConsultationRequest r2 = userService.assignEmployeeToRequest(request2);
+			ConsultationRequest r3 = userService.assignEmployeeToRequest(request3);
+			ConsultationRequest r4 = userService.assignEmployeeToRequest(request4);
 
 			List<Employee> listEmployee3 = employeeRepository.findAll();
 			System.out.println(listEmployee3.get(0).getRequests());
 
-			System.out.println(r1 + r2 + r3 + r4);
-			// List<Patient> listPatient2 = patientRepository.findAll();
-			// System.out.println(listPatient + "Patient Requests" + listPatient2.get(0).getRequests());
+			System.out.println(r1 + " // " + r2 + "//" + r3 + "//" + r4);
+			List<Patient> listPatient2 = patientRepository.findAll();
+			System.out.println(listPatient + "Patient Requests" + listPatient2.get(0).getRequests());
 			
-			// request = listPatient2.get(0).getRequests().get(0);
-			// System.out.println(request.getFeedback());
+			request = listPatient2.get(0).getRequests().get(0);
+			System.out.println(request.getFeedback());
 			
-			// request2 = listPatient2.get(0).getRequests().get(1);
-			// System.out.println(request2.getReport());
+			request2 = listPatient2.get(0).getRequests().get(1);
+			System.out.println(request2.getReport());
 
-			// List<User> userList = userRepository.findAll();
-			// int patientNumber = 0;
-			// int employeeNumber = 0;
-			// for (User user : userList) {
-			// 	if (user instanceof Patient) patientNumber++;
-			// 	if (user instanceof Employee) employeeNumber++;
-			// }
-			// System.out.println("patients=" + patientNumber + "  employees=" + employeeNumber);
+			List<User> userList = userRepository.findAll();
+			int patientNumber = 0;
+			int employeeNumber = 0;
+			for (User user : userList) {
+				if (user instanceof Patient) patientNumber++;
+				if (user instanceof Employee) employeeNumber++;
+			}
+			System.out.println("patients=" + patientNumber + "  employees=" + employeeNumber);
 		};
 	}
 	

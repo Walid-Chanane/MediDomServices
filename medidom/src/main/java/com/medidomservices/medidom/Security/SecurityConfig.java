@@ -27,7 +27,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.formLogin(form->
-        form.defaultSuccessUrl("/redirect"));
+        form.defaultSuccessUrl("/home"));
+        http.csrf(csrf -> csrf.disable());
         return http.build();
     }
 }

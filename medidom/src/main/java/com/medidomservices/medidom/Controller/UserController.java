@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/redirect")
+    @GetMapping("/home")
     public String redirectUser(@AuthenticationPrincipal UserDetails userDetails){
         User user = userRepository.findByEmail(userDetails.getUsername());
         if(user instanceof Patient) return "ImAPatient.html";
