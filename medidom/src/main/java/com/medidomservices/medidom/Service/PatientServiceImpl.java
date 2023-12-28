@@ -8,16 +8,21 @@ import org.springframework.stereotype.Service;
 
 import com.medidomservices.medidom.Entity.ConsultationRequest;
 import com.medidomservices.medidom.Entity.User.Employee;
+import com.medidomservices.medidom.Entity.User.Patient;
 import com.medidomservices.medidom.Repositories.EmployeeRepository;
+import com.medidomservices.medidom.Repositories.PatientRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class PatientServiceImpl implements PatientService{
+
+    @Autowired
+    private PatientRepository patientRepository;
 
     @Autowired
     private EmployeeRepository employeeRepository;
 
     @Override
-    public String assignEmployeeToRequest(ConsultationRequest userRequest) {
+    public ConsultationRequest assignEmployeeToRequest(ConsultationRequest userRequest) {
         List<Employee> employeeList = employeeRepository.findBySpecialty("first");
         System.out.println(employeeList);
         int i;
@@ -39,9 +44,18 @@ public class UserServiceImpl implements UserService{
                 employee.addRequest(userRequest);
                 employeeRepository.save(employee);
                 userRequest.setEmployeeId(employee);
-                return "success";
+                return userRequest;
             }
         }
-        return "false";
+        return null;
     }
+
+    @Override
+    public void deleteRequestById(String email,int theId) {
+        Patient patient = patientRepository.findByEmail(email);
+        
+        patient.getRequests().removeIf(i -> i.getRequest_id() == theId);
+            
+    }
+
 }
