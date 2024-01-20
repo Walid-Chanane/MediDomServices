@@ -8,6 +8,8 @@ import com.medidomservices.medidom.Entity.ConsultationRequest;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
@@ -24,7 +26,8 @@ public class Employee extends User{
 
     private String mailingAddress;
 
-    private String specialty;
+    @Enumerated(EnumType.ORDINAL)
+    private Specialty specialty;
 
     private int rating;
 
@@ -32,7 +35,7 @@ public class Employee extends User{
     private List<ConsultationRequest> requests;
 
     public Employee(String firstName, String lastName, Date dob, Long phoneNumber, String email, String password,
-            Role role, int experience, String mailingAddress, String specialty, int rating) {
+            Role role, int experience, String mailingAddress, Specialty specialty, int rating) {
         super(firstName, lastName, dob, phoneNumber, email, password, role);
         this.experience = experience;
         this.mailingAddress = mailingAddress;

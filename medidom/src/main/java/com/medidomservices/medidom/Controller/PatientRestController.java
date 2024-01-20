@@ -38,7 +38,7 @@ public class PatientRestController {
         return patientService.getRequestById(userDetails.getUsername(), theId);
     }
 
-    @GetMapping("/affectation")
+    @PostMapping("/affectation")
     public ConsultationRequest getRequestToValidate(@RequestBody ConsultationRequest request, @AuthenticationPrincipal UserDetails userDetails){
         return patientService.assignEmployeeToRequest(userDetails.getUsername(), request);    
     }

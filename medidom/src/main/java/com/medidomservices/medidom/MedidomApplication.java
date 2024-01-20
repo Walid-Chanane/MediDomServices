@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Bean;
 import com.medidomservices.medidom.Entity.ConsultationRequest;
 import com.medidomservices.medidom.Entity.Feedback;
 import com.medidomservices.medidom.Entity.Report;
-import com.medidomservices.medidom.Entity.Service;
 import com.medidomservices.medidom.Entity.User.Employee;
 import com.medidomservices.medidom.Entity.User.Patient;
 import com.medidomservices.medidom.Entity.User.Role;
+import com.medidomservices.medidom.Entity.User.Specialty;
 import com.medidomservices.medidom.Entity.User.User;
 import com.medidomservices.medidom.Repositories.EmployeeRepository;
 import com.medidomservices.medidom.Repositories.PatientRepository;
@@ -31,15 +31,15 @@ public class MedidomApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(PatientService userService, UserRepository userRepository,EmployeeRepository employeeRepository, PatientRepository patientRepository){
 		return runner -> {
-			ConsultationRequest request = new ConsultationRequest(new Date(222222222222000L), Service.first, null);
-			ConsultationRequest request2 = new ConsultationRequest(new Date(222222222222000L), Service.second, null);
-			ConsultationRequest request3 = new ConsultationRequest(new Date(222222222222000L), Service.second, null);
+			ConsultationRequest request = new ConsultationRequest(new Date(222222222222000L), Specialty.PEDIATRICS, null);
+			ConsultationRequest request2 = new ConsultationRequest(new Date(222222222222000L), Specialty.PEDIATRICS, null);
+			ConsultationRequest request3 = new ConsultationRequest(new Date(222222222222000L), Specialty.PEDIATRICS, null);
 			
 			Patient temPatient = new Patient("John","Doe",new Date(0),54557L, "john@gmail.com","{noop}johndoe", Role.PATIENT, 0, "sugar", "cookies");
-			Employee tempEmployee = new Employee("Zitouni", "Zerhouni",new Date(0), 5851L, "zerhouni@gmail.com", "{noop}zerhouni", Role.DOCTOR, 20,"Bab ezzouar", "first",1);
+			Employee tempEmployee = new Employee("Zitouni", "Zerhouni",new Date(0), 5851L, "zerhouni@gmail.com", "{noop}zerhouni", Role.DOCTOR, 20,"Bab ezzouar", Specialty.PEDIATRICS,1);
 			Feedback feedback = new Feedback(3, 3);
 			Report report = new Report("instable","sport", "finish him");
-			ConsultationRequest request4 = new ConsultationRequest(new Date(222222222222000L), Service.second, null);
+			ConsultationRequest request4 = new ConsultationRequest(new Date(222222222222000L), Specialty.PEDIATRICS, null);
 
 			patientRepository.save(temPatient);
 
