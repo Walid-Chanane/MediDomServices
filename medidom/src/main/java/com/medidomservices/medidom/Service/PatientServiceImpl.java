@@ -36,7 +36,7 @@ public class PatientServiceImpl implements PatientService{
     @Override
     public ConsultationRequest assignEmployeeToRequest(String email, ConsultationRequest userRequest) {
         userRequest.setPatientId(patientRepository.findByEmail(email));
-        List<Employee> employeeList = employeeRepository.findBySpecialty("first");
+        List<Employee> employeeList = employeeRepository.findBySpecialty(userRequest.getService());
         System.out.println(employeeList);
         int i;
         for (Employee employee : employeeList) {

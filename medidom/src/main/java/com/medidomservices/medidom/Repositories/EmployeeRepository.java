@@ -7,12 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.medidomservices.medidom.Entity.User.Employee;
+import com.medidomservices.medidom.Entity.User.Specialty;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
 
     Employee findByEmail(String email);
 
     @Query("select e from Employee e where e.specialty=:specialty order by rating desc")
-    List<Employee> findBySpecialty(@Param("specialty") String specialty);
+    List<Employee> findBySpecialty(@Param("specialty") Specialty specialty);
 
 }

@@ -4,9 +4,12 @@ import java.sql.Date;
 
 import com.medidomservices.medidom.Entity.User.Employee;
 import com.medidomservices.medidom.Entity.User.Patient;
+import com.medidomservices.medidom.Entity.User.Specialty;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,7 +30,8 @@ public class ConsultationRequest {
 
     private Date requestDate;
 
-    private Service service;
+    @Enumerated(EnumType.ORDINAL)
+    private Specialty service;
 
     private Boolean done;
 
@@ -47,7 +51,7 @@ public class ConsultationRequest {
     @JoinColumn(name = "report_id")
     private Report report;
 
-    public ConsultationRequest(Date requestDate, Service service, Patient patientId) {
+    public ConsultationRequest(Date requestDate, Specialty service, Patient patientId) {
         this.requestDate = requestDate;
         this.service = service;
         this.patientId = patientId;
