@@ -63,12 +63,12 @@ public class PatientServiceImpl implements PatientService{
         return null;
     }
 
-    @Override
-    public void deleteRequestById(String email,int theId) {
-        Patient patient = patientRepository.findByEmail(email);
-        patient.getRequests().removeIf(i -> i.getRequest_id() == theId);
-        patientRepository.save(patient);
-    }
+    // @Override
+    // public void deleteRequestById(String email,int theId) {
+    //     Patient patient = patientRepository.findByEmail(email);
+    //     patient.getRequests().removeIf(i -> i.getRequest_id() == theId);
+    //     patientRepository.save(patient);
+    // }
 
     @Override
     public ConsultationRequest getRequestById(String email, int theId) {

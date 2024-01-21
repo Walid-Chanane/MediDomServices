@@ -15,6 +15,4 @@ public interface PatientService {
 
     ConsultationRequest assignEmployeeToRequest(String email, ConsultationRequest request);
 
-    void deleteRequestById(String email, int theId);
-
 }

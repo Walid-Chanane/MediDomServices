@@ -50,9 +50,9 @@ public class PatientRestController {
         requestService.save(request);
     }
 
-    @DeleteMapping("/requests/{id}")
-    public void deleteRequestById(@PathVariable int theId, @AuthenticationPrincipal UserDetails userDetails){
-        patientService.deleteRequestById(userDetails.getUsername(), theId);
+    @DeleteMapping("/delete/{theId}")
+    public void deleteRequest(@PathVariable Integer theId){
+        requestService.deleteRequestById(theId);
     }
 
 }

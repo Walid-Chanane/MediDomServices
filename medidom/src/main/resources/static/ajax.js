@@ -1,20 +1,19 @@
 
-    function Try (){
+    function Try(){
     const xhttp = new XMLHttpRequest()
     xhttp.open("GET", "http://localhost:8080/patient/requests")
 
     let htmlText = '';
     xhttp.onload = function(){
-                if(this.status == 200){
-                let requests = JSON.parse(xhttp.responseText)
-                htmlText += createCard(requests);
-                document.getElementById("requests").innerHTML = htmlText;
-                }
-                }
+      if(this.status == 200){
+         let requests = JSON.parse(xhttp.responseText)
+         htmlText += createCard(requests);
+         document.getElementById("requests").innerHTML = htmlText;
+         }
+      }
 
-                xhttp.send()
-
-                }
+      xhttp.send()
+   }
 
 
 
@@ -95,7 +94,7 @@ function addRequest (){
 
 function deleteRequest(theId){
     const xhttp = new XMLHttpRequest()
-    xhttp.open("DELETE", "http://localhost:8080/patient/requests/" + theId, true)
+    xhttp.open("DELETE", "http://localhost:8080/patient/delete/" + theId, true)
     xhttp.onload = function(){
         Try()
     }
