@@ -1,0 +1,81 @@
+
+  /* Custom Form Styling */
+  .form-group {
+    margin-bottom: 1.5rem;
+    
+    
+  }
+
+  .form-group .form-control{
+    margin-top: 5px;
+  }
+
+  .form-select{
+    margin-top: 5px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+
+  .btn-form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+
+
+  .card:hover {
+    transform: translate3D(0,-1px,0) scale(1.05);
+    transition: all .4s ease; 
+    cursor: pointer;
+     }
+     .form-check-input:checked {
+        background-color: black;
+        border-color: grey ;}
+     .form-check-label {
+        color: grey;
+     }
+
+     .cardbtn{
+        border-top-right-radius: 0.375rem;
+        border-top-left-radius: 0.375rem;
+     }
+
+button.btn.btn-dark{
+    background-color: rgb(227, 132, 69);
+}     
+
+label#date-label{
+  font-size: var(--fs-7);
+  font-family: var(--ff-poppins);
+  margin-bottom: 8px;
+  margin-left: 5px;
+}
+
+label#time-label{
+  font-size: var(--fs-7);
+  font-family: var(--ff-poppins);
+  margin-bottom: 8px;
+  margin-left: 5px;
+}
+
+
+  .appointment-display table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .appointment-display th, .appointment-display td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .appointment-display th {
+    background-color: #f2f2f2;
+  }
+
+
