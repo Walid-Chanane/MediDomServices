@@ -7,4 +7,6 @@ public interface RequestService {
     void save(ConsultationRequest request);
 
     void validateConsultation(int theId);
+
+    void deleteRequestById(Integer theId);
 }

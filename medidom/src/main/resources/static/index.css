@@ -1,0 +1,16 @@
+h2{
+    text-shadow: #000000 0px 0px 1px;
+}
+
+h1,h3,h5{
+    text-shadow: #000000 1px 1px 10px;
+}
+
+nav{
+    background-image: url("./appImages/luc-dobigeon-BdvZQL0iebM-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 4.5cm;
+    border-bottom-style: solid;
+
+}

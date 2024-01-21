@@ -52,8 +52,8 @@ public class EmployeeRestController {
     }
 
     @DeleteMapping("/delete/{theId}")
-    public void cancelRequest(@PathVariable int theId, @AuthenticationPrincipal UserDetails userDetails){
-        employeeService.deleteRequestById(userDetails.getUsername(), theId);
+    public void deleteRequest(@PathVariable Integer theId){
+        requestService.deleteRequestById(theId);
     }
 
 }
