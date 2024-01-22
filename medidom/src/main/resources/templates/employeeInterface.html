@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="shadow-lg text-dark">
+        <div class="container-fluid text-center pt-3">
+            <h2 class="display-4 fw-bold mt-2 mb-4">MédiDomServices</h2>
+        </div>
+        <button class="btn btn-dark fw-bold border-0 position-absolute start-50 translate-middle-x px-5 py-2" disabled>
+            WORK HARDER!
+        </button>
+        <a href="http://localhost:8080/logout" class="btn bg-transparant position-absolute top-0 end-0 mt-2 border-0">
+            <img src="appImages/th.png" style="width: 50px;" alt="logout">
+        </a> 
+    </nav>
+
+    <div class="container position-absolute start-50 translate-middle-x py-5">
+    <div class="row row-cols-3 g-5" style="width: 98%; margin-left: 6px;">
+        <div class="col mx-auto">
+            <div class="card shadow-lg border-0 border-black bg-basic text-center" style="width: 20rem;">
+                
+                <div class="card-header p-0 text-light">
+                    <img src="appImages/pediatre0.jpg" class="card-img" alt="...">
+                        <div class="card-img-overlay"><a class="cardbtn text-decoration-none text-reset border-0 m-0 p-0" data-bs-toggle="modal" data-bs-target="#showDetails">
+                            <h1 class="card-title display-1 fw-semibold m-0">21</h1><h3>July 2024</h3></a>
+                            <div class="position-absolute end-0 bottom-0 pb-2 px-2">   
+                                <button class="btn btn-success">
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                                <button class="btn btn-primary">
+                                    Report
+                                </button>
+                            </div>
+                        </div>
+                </div>
+            
+            </div>
+        </div>
+
+        <div class="col mx-auto">
+            <div class="card shadow-lg border-0 border-black bg-basic text-center" style="width: 20rem;">
+                
+                <div class="card-header p-0 text-light">
+                    <img src="appImages/pediatre0.jpg" class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                        <h1 class="card-title display-1 fw-semibold m-0">22</h1><h3>July 2024</h3>
+                        <div class="position-absolute end-0 bottom-0 pb-2 px-2">   
+                            <button class="btn btn-success">
+                                <i class="fa-solid fa-check"></i>
+                            </button>
+                            <button class="btn btn-danger">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                            <button class="btn btn-primary">
+                                Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mx-auto">
+            <div class="card shadow-lg border-0 border-black bg-basic text-center" style="width: 20rem;">
+                
+                <div class="card-header p-0 text-light">
+                    <img src="appImages/pediatre0.jpg" class="card-img" alt="...">
+                        <div class="card-img-overlay">
+                            <h1 class="card-title display-1 fw-semibold m-0">23</h1><h3>July 2024</h3>
+                            <div class="position-absolute end-0 bottom-0 pb-2 px-2">   
+                                <button class="btn btn-success">
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                                <button class="btn btn-primary">
+                                    Report
+                                </button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mx-auto">
+            <div class="card shadow-lg border-0 border-black bg-basic text-center" style="width: 20rem;">
+                
+                <div class="card-header p-0 text-light">
+                    <img src="appImages/pediatre0.jpg" class="card-img" alt="...">
+                        <div class="card-img-overlay">
+                            <h1 class="card-title display-1 fw-semibold m-0">24</h1><h3>July 2024</h3>
+                            <div class="position-absolute end-0 bottom-0 pb-2 px-2">   
+                                <button class="btn btn-success">
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                                <button class="btn btn-primary" disabled>
+                                    Report
+                                </button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal fade position-fixed mt-5" id="showDetails" tabindex="-1" aria-labelledby="requestModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content" style="background: linear-gradient(to right, #73c8a9, #373b44);">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h5 class="modal-title" id="requestModalLabel">Request Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+      
+            <!-- Modal Body -->
+            <div class="modal-body">
+              <form id="details-form">
+                
+                <!-- Request Date -->
+                <div class="form-group">
+                    <label for="sDate" class="form-label fw-bold">Consultation Date:</label>
+                    <input type="date" class="form-control" id="sDate" name="sDate" disabled>
+                </div>
+                <br>
+
+                <!-- Service -->
+                <label for="sService" class="form-label fw-bold">Service:</label>
+                <select class="form-select" id="sService" name="sService" disabled>
+                    <option value="PEDIATERICS">Pediatre</option>
+                    <option value="meetings">zetla</option>
+                    <option value="household">household</option>
+                    <option value="shopping">shopping</option>   
+                    <option value="rest">rest</option>
+                    <option value="other">other</option>
+                </select>
+                <br>
+
+                <label for="sDoctor" class="form-label fw-bold">Patient name:</label>
+                <input type="text" class="form-control" id="sDoctor" name="sDoctor" disabled>
+    
+                <hr>
+                <!-- Buttons -->
+                <div class="btn-form">
+                  <button type="button" class="btn btn-dark w-100" data-bs-dismiss="modal" aria-label="Close">OK</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script src="https://kit.fontawesome.com/d01d9e83ae.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

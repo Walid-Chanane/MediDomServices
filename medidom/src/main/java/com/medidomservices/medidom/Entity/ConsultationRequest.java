@@ -61,12 +61,12 @@ public class ConsultationRequest {
 
     public String getEmployeeId(){
         if(employeeId == null) return null;
-        else return employeeId.getEmail();
+        else return "Dr. " + employeeId.getLastName();
     }
 
     public String getPatientId(){
         if(patientId == null) return null;
-        else return patientId.getEmail();
+        else return patientId.getFirstName() + " " + patientId.getLastName();
     }
 
     @Override

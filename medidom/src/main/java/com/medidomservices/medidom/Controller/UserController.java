@@ -26,8 +26,8 @@ public class UserController {
     @GetMapping("/home")
     public String redirectUser(@AuthenticationPrincipal UserDetails userDetails){
         User user = userRepository.findByEmail(userDetails.getUsername());
-        if(user instanceof Patient) return "ImAPatient.html";
-        if(user instanceof Employee) return "ImAnEmployee.html";
+        if(user instanceof Patient) return "patientInterface.html";
+        if(user instanceof Employee) return "employeeInterface.html";
         return null;
     }
 }
