@@ -2,7 +2,7 @@ h2{
     text-shadow: #000000 0px 0px 1px;
 }
 
-h1,h3,h5{
+h1,h3{
     text-shadow: #000000 1px 1px 10px;
 }
 
@@ -13,4 +13,9 @@ nav{
     height: 4.5cm;
     border-bottom-style: solid;
 
+}
+.card:hover {
+    transform: translate3D(0,-1px,0) scale(1.05);
+    transition: all .4s ease; 
+    cursor: pointer;
 }
