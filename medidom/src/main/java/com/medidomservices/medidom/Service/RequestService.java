@@ -8,5 +8,5 @@ public interface RequestService {
 
     void validateConsultation(int theId);
 
-    void deleteRequestById(Integer theId);
+    String deleteRequestById(Integer theId);
 }

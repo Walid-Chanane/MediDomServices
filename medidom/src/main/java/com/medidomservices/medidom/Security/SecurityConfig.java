@@ -26,13 +26,21 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http.formLogin(form->
-                form
-                    .loginPage("/login")
-                    .loginProcessingUrl("/authenticateTheUser")
-                    .defaultSuccessUrl("/home")
-            );
-        http.csrf(csrf -> csrf.disable());
+        http.authorizeHttpRequests(configurer ->
+            configurer
+                .requestMatchers("/patient/*").hasAuthority("PATIENT")
+                .requestMatchers("/employee/**").hasAnyAuthority("DOCTOR", "NURSE")
+                .requestMatchers("/home/**").authenticated()
+                .anyRequest().permitAll()
+        )
+        .formLogin(form->
+            form
+                .loginPage("/login")
+                .loginProcessingUrl("/authenticateTheUser")
+                .defaultSuccessUrl("/home")
+                .permitAll()
+        )
+        .csrf(csrf -> csrf.disable());
         return http.build();
     }
 }
