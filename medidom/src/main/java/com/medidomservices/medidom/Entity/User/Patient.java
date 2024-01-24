@@ -19,23 +19,25 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 public class Patient extends User{
-    
+
     private long socialSecurityNumber;
 
     private String chronicPathology;
 
     private String specialMedicalTreatment;
 
+    private String address;
+
     @OneToMany(mappedBy = "patientId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ConsultationRequest> requests;
-    
 
     public Patient(String firstName, String lastName, Date dob, Long phoneNumber, String email, String password,
-            Role role, long socialSecurityNumber, String chronicPathology, String specialMedicalTreatment) {
+            Role role, long socialSecurityNumber, String chronicPathology, String specialMedicalTreatment, String address) {
         super(firstName, lastName, dob, phoneNumber, email, password, role);
         this.socialSecurityNumber = socialSecurityNumber;
         this.chronicPathology = chronicPathology;
         this.specialMedicalTreatment = specialMedicalTreatment;
+        this.address = address;
     }
 
     @Override
@@ -44,7 +46,7 @@ public class Patient extends User{
          + ", DateOfBirth: " + super.dob + ", phoneNumber: " + super.phoneNumber+ ", email: " + super.email
         + ", password: " + super.password + ", role: " + super.role
          + ", socialSecurityNumber=" + socialSecurityNumber + ", chronicPathology=" + chronicPathology
-                + ", specialMedicalTreatment=" + specialMedicalTreatment + "]";
+                + ", specialMedicalTreatment=" + specialMedicalTreatment + ", address=" + address + "]";
     }
 
     public void addRequest(ConsultationRequest request){

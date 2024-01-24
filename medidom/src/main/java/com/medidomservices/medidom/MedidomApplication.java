@@ -35,7 +35,7 @@ public class MedidomApplication {
 			ConsultationRequest request2 = new ConsultationRequest(new Date(222222222222000L), Specialty.PEDIATRICS, null);
 			ConsultationRequest request3 = new ConsultationRequest(new Date(222222222222000L), Specialty.PEDIATRICS, null);
 			
-			Patient temPatient = new Patient("John","Doe",new Date(0),54557L, "john@gmail.com","{noop}johndoe", Role.PATIENT, 0, "sugar", "cookies");
+			Patient temPatient = new Patient("John","Doe",new Date(0),54557L, "john@gmail.com","{noop}johndoe", Role.PATIENT, 0, "sugar", "cookies", "bab ezzouar");
 			Employee tempEmployee = new Employee("Zitouni", "Zerhouni",new Date(0), 5851L, "zerhouni@gmail.com", "{noop}zerhouni", Role.DOCTOR, 20,"Bab ezzouar", Specialty.PEDIATRICS,1);
 			Feedback feedback = new Feedback(3, 3);
 			Report report = new Report("instable","sport", "finish him");

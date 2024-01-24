@@ -2,7 +2,7 @@ var currentId
 
 function loadRequests(){
    const xhttp = new XMLHttpRequest()
-   xhttp.open("GET", "http://localhost:8080/patient/requests")
+   xhttp.open("GET", "http://localhost:8080/employee/requests")
 
    let htmlText = '';
    xhttp.onload = function(){
@@ -46,55 +46,31 @@ let htmlText = '<div class="container position-absolute start-50 translate-middl
          }
 
          htmlText+= '<div class="card-img-overlay">'
-            + '<button class="text-decoration-none text-reset border-0 m-0 p-0 w-100" onclick="showRequest(this.value)" data-bs-toggle="modal" data-bs-target="#showDetails" style="background-color: transparent;" value='+ requests[i].request_id +'>'
+         if(requests[i].done == true) htmlText += '<button class="btn btn-dark position-absolute end-0 top-0 mt-1 mx-1"><i class="fa-solid fa-check"></i></button>'
+            htmlText += '<button class="text-decoration-none text-reset border-0 m-0 p-0 w-100" onclick="showRequest(this.value)" data-bs-toggle="modal" data-bs-target="#showDetails" style="background-color: transparent;" value='+ requests[i].request_id +'>'
             + '<h1 class="card-title display-1 fw-semibold m-0">' + thisDate.getDate()
             + '</h1><h3>' + months[thisDate.getMonth()]
             + ' ' + thisDate.getFullYear() + '</h3></button> <div class="position-absolute end-0 bottom-0 pb-2 px-2">'
+            + '<button value=' + requests[i].request_id +' onclick="currentId=this.value" data-bs-toggle="modal" data-bs-target="#validationModal" class="btn btn-success"><i class="fa-solid fa-check"></i></button>'
             + '<button value=' + requests[i].request_id +' onclick="currentId=this.value" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" class="btn btn-danger mx-1"><i class="fa-solid fa-trash-can"></i></button>'
-            + '<button value='+ requests[i].request_id +' onclick="currentId=this.value" data-bs-toggle="modal" data-bs-target="#feedback" class="btn btn-primary">Feedback</button>'
-            + '</div></div></div></div></div>'
+            if(requests[i].done == true && requests[i].report == null) htmlText +='<button value=' + requests[i].request_id +' onclick="currentId=this.value" data-bs-toggle="modal" data-bs-target="#report" class="btn btn-primary">Report</button>'
+            else htmlText += '<button class="btn btn-primary" disabled>Report</button>'
+            htmlText += '</div></div></div></div></div>'
    }
    htmlText += '</div></div>';
 return htmlText;
 }
 
-function addRequest (){
-   let Rdate = document.getElementById("RDate").value
-   let tservice = document.getElementById("aService").value
-//   if(difTime(Date.parse(Rdate)) >= -1){
-      const xhttp = new XMLHttpRequest()
-      xhttp.open("POST", "http://localhost:8080/patient/affectation", true)
-      xhttp.setRequestHeader("Content-type", "application/json")
-      xhttp.onload = function(){
-            if(this.status == 200){
-               let request = JSON.parse(this.responseText)
-               currentId = request.request_id
-               confirmRequest(request)
-            }else console.log("error")
-      }
-      let param = JSON.stringify({requestDate : Rdate, service : tservice})
-      console.log(param)
-      xhttp.send(param)
-//   }
-}
-
-function confirmRequest(request){
-   var confirmationModal = new bootstrap.Modal(document.getElementById('confirmRequest'));
-   document.getElementById("cDate").value = request.requestDate
-   document.getElementById("cService").value = request.service
-   document.getElementById("cDoctor").value = request.employeeId
-   confirmationModal.show();
-}
-
 function showRequest(theId){
    const xhttp = new XMLHttpRequest()
-   xhttp.open("GET", "http://localhost:8080/patient/requests/" + theId, true)
+   xhttp.open("GET", "http://localhost:8080/employee/requests/" + theId, true)
    xhttp.onload = function(){
       if(this.status == 200){
          let request = JSON.parse(this.responseText)
          document.getElementById("sDate").value = request.requestDate
-         document.getElementById("sService").value = request.service
-         document.getElementById("sDoctor").value = request.employeeId
+         document.getElementById("sPatient").value = request.patientId[0]
+         document.getElementById("sAddress").value = request.patientId[1]
+         document.getElementById("sNumber").value = request.patientId[2]
       }
    }
    xhttp.send()
@@ -102,26 +78,37 @@ function showRequest(theId){
 
 function deleteRequest(){
     const xhttp = new XMLHttpRequest()
-    xhttp.open("DELETE", "http://localhost:8080/patient/delete/" + currentId, true)
+    xhttp.open("DELETE", "http://localhost:8080/employee/delete/" + currentId, true)
     xhttp.onload = function(){
         loadRequests()
     }
     xhttp.send()
 }
 
-function addFeedback(){
-   let Qs = document.getElementById("QS").value
-   let Ps = document.getElementById("PS").value
+function addReport(){
+   let state = document.getElementById("state").value
+   let treatment = document.getElementById("treatment").value
+   let recommendation = document.getElementById("recommendation").value
    
    const xhttp = new XMLHttpRequest()
-
-   xhttp.open("POST", "http://localhost:8080/patient/feedback/" + currentId, true)
+   xhttp.open("POST", "http://localhost:8080/employee/report/" + currentId, true)
    xhttp.setRequestHeader("Content-type", "application/json")
    xhttp.onload = function(){
          if(this.status == 200){
             loadRequests()
          }else console.log("error")
    }
-   let param = JSON.stringify({qualityOfServices : Qs , punctualityOfServices : Ps })
+   let param = JSON.stringify({stateOfPatient : state , treatment : treatment, recommendation : recommendation })
    xhttp.send(param)
+}
+
+function validateConsultation(){
+    const xhttp = new XMLHttpRequest()
+    xhttp.open("PUT", "http://localhost:8080/employee/validate/" + currentId, true)
+    xhttp.onload = function(){
+        if(this.status == 200){
+            loadRequests()
+        }
+    }
+    xhttp.send()
 }

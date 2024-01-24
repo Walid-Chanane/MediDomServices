@@ -64,9 +64,12 @@ public class ConsultationRequest {
         else return "Dr. " + employeeId.getLastName();
     }
 
-    public String getPatientId(){
+    public String[] getPatientId(){
         if(patientId == null) return null;
-        else return patientId.getFirstName() + " " + patientId.getLastName();
+        else{
+            String[] array = {patientId.getFirstName() + " " + patientId.getLastName(), patientId.getAddress(), String.valueOf(patientId.getPhoneNumber())};
+            return array;
+        }
     }
 
     @Override
