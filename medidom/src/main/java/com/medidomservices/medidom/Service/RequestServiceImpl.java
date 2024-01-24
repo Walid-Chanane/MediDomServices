@@ -25,8 +25,13 @@ public class RequestServiceImpl implements RequestService{
     }
 
     @Override
-    public void deleteRequestById(Integer theId) {
-        requestRepository.deleteById(theId);
+    public String deleteRequestById(Integer theId) {
+        ConsultationRequest tempRequest = requestRepository.findById(theId).get();
+        if(tempRequest.getDone() == false) {
+            requestRepository.deleteById(theId);
+            return "true";
+        }
+        else return "false";
     }
     
 }

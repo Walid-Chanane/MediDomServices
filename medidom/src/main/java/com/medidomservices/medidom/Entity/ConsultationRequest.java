@@ -52,10 +52,9 @@ public class ConsultationRequest {
     @JoinColumn(name = "report_id")
     private Report report;
 
-    public ConsultationRequest(Date requestDate, Specialty service, Patient patientId) {
+    public ConsultationRequest(Date requestDate, Specialty service) {
         this.requestDate = requestDate;
         this.service = service;
-        this.patientId = patientId;
         this.done = false;
     }
 

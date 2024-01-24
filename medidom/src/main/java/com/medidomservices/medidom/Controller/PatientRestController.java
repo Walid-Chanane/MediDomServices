@@ -51,8 +51,8 @@ public class PatientRestController {
     }
 
     @DeleteMapping("/delete/{theId}")
-    public void deleteRequest(@PathVariable Integer theId){
-        requestService.deleteRequestById(theId);
+    public String deleteRequest(@PathVariable Integer theId){
+        return requestService.deleteRequestById(theId);
     }
 
 }
