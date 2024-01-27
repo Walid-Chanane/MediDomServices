@@ -1,6 +1,7 @@
 package com.medidomservices.medidom.Service;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,40 +37,42 @@ public class PatientServiceImpl implements PatientService{
     @Override
     public ConsultationRequest assignEmployeeToRequest(String email, ConsultationRequest userRequest) {
         userRequest.setPatientId(patientRepository.findByEmail(email));
+        
         List<Employee> employeeList = employeeRepository.findBySpecialty(userRequest.getService());
-        System.out.println(employeeList);
-        int i;
+        return findEmployeeForRequest(userRequest, employeeList);
+        
+    }
+
+    private ConsultationRequest findEmployeeForRequest(ConsultationRequest userRequest, List<Employee> employeeList) {
+        LocalDate theDate = userRequest.getRequestDate().toLocalDate();
+        Boolean found;
         for (Employee employee : employeeList) {
-            i=0;
+            found = true;
             for (ConsultationRequest request : employee.getRequests()) { 
-                long date1 = request.getRequestDate().getTime();
-                String date21 = userRequest.getRequestDate().toString();
-                Date date22 = Date.valueOf(date21);
-                long date2 = date22.getTime();
-                System.out.println(date1);
-                System.out.println(date2);
-                if(date1 == date2){
-                    i++;
+                
+                if(theDate.isEqual(request.getRequestDate().toLocalDate()) && userRequest.getRequestTime() == request.getRequestTime()){
+                    found = false;
+                    break;
                 }
+                
             }
-            if(i < 3){
-                System.out.println(i);
+            if(found == true){
                 employee.addRequest(userRequest);
                 employeeRepository.save(employee);
-                userRequest.setEmployeeId(employee);
                 return userRequest;
             }
         }
-        return null;
+        if(userRequest.getRequestTime() < 3) {
+            userRequest.setRequestTime(userRequest.getRequestTime()+1);
+            return findEmployeeForRequest(userRequest, employeeList);
+        }
+        else{
+            userRequest.setRequestDate(Date.valueOf(userRequest.getRequestDate().toLocalDate().plusDays(1)));
+            userRequest.setRequestTime(1);
+            return findEmployeeForRequest(userRequest, employeeList);
+        }
     }
-
-    // @Override
-    // public void deleteRequestById(String email,int theId) {
-    //     Patient patient = patientRepository.findByEmail(email);
-    //     patient.getRequests().removeIf(i -> i.getRequest_id() == theId);
-    //     patientRepository.save(patient);
-    // }
-
+   
     @Override
     public ConsultationRequest getRequestById(String email, int theId) {
         Patient patient = patientRepository.findByEmail(email);

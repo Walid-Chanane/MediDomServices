@@ -70,6 +70,7 @@ function showRequest(theId){
       if(this.status == 200){
          let request = JSON.parse(this.responseText)
          document.getElementById("sDate").value = request.requestDate
+         document.getElementById("sTime").value = request.requestTime
          document.getElementById("sPatient").value = request.patientId[0]
          document.getElementById("sAddress").value = request.patientId[1]
          document.getElementById("sNumber").value = request.patientId[2]

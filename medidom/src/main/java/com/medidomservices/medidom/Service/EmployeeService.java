@@ -11,7 +11,5 @@ public interface EmployeeService {
 
     List<ConsultationRequest> findEmployeeRequests(String email);
     
-    void deleteRequestById(String email,int theId);
-
     ConsultationRequest getRequestById(String email, int theId);
 }
