@@ -36,9 +36,19 @@
             <div class="modal-body">
               <form id="details-form">
                 <!-- Request Date -->
-                <div class="form-group">
-                    <label for="sDate" class="form-label fw-bold">Consultation Date:</label>
-                    <input type="date" class="form-control" id="sDate" name="sDate" disabled>
+                <div class="form-group row">
+                    <div class="col">
+                      <label for="sDate" class="form-label fw-bold">Consultation Date:</label>
+                      <input type="date" class="form-control col" id="sDate" name="sDate" disabled>
+                    </div>
+                    <div class="col">
+                      <label for="sTime" class="form-label fw-bold">Time:</label>
+                      <select class="form-select col" name="sTime" id="sTime" disabled>
+                        <option value="1">9:00</option>
+                        <option value="2">11:00</option>
+                        <option value="3">14:00</option>
+                      </select>
+                    </div>
                 </div>
                 <br>
                 

@@ -14,7 +14,7 @@
             <h2 class="display-4 fw-bold mt-2 mb-4">MédiDomServices</h2>
         </div>
         <button class="btn btn-dark fw-bold border-0 position-absolute start-50 translate-middle-x px-5 py-2" data-bs-toggle="modal" data-bs-target="#requestModal">
-            BOOKMARK
+            MAKE AN APPOINTMENT
         </button>
         <a href="http://localhost:8080/logout" class="btn bg-transparant position-absolute top-0 end-0 mt-2 border-0">
             <img src="appImages/th.png" style="width: 50px;" alt="logout">
@@ -23,6 +23,7 @@
 
     <div id="requests"></div>
 
+    <!-- Add request form -->
     <div class="modal fade position-fixed mt-5 pt-5" id="requestModal" tabindex="-1" aria-labelledby="requestModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content border-0" style="background: linear-gradient(to right, #73c8a9, #373b44);">
@@ -35,10 +36,20 @@
             <div class="modal-body">
               <form id="details-form">
                 <!-- Request Date -->
-                <div class="form-group">
-                    <label for="sDate" class="form-label fw-bold">Consultation Date:</label>
-                    <input type="date" class="form-control" id="RDate" name="sDate">
-                </div>
+                <div class="form-group row">
+                  <div class="col">
+                    <label for="aDate" class="form-label fw-bold">Consultation Date:</label>
+                    <input type="date" class="form-control col" id="RDate" name="aDate">
+                  </div>
+                  <div class="col">
+                    <label for="aTime" class="form-label fw-bold">Time:</label>
+                    <select class="form-select col" name="aTime" id="aTime">
+                      <option value="1">9:00</option>
+                      <option value="2">11:00</option>
+                      <option value="3">14:00</option>
+                    </select>
+                  </div>
+              </div>
                 <br>
                 <!-- Service -->
                 <label for="sService" class="form-label fw-bold">Service:</label>
@@ -77,9 +88,19 @@
             <div class="modal-body">
               <form id="details-form">
                 <!-- Request Date -->
-                <div class="form-group">
-                    <label for="sDate" class="form-label fw-bold">Consultation Date:</label>
-                    <input type="date" class="form-control" id="sDate" name="sDate" disabled>
+                <div class="form-group row">
+                    <div class="col">
+                      <label for="sDate" class="form-label fw-bold">Consultation Date:</label>
+                      <input type="date" class="form-control col" id="sDate" name="sDate" disabled>
+                    </div>
+                    <div class="col">
+                      <label for="sTime" class="form-label fw-bold">Time:</label>
+                      <select class="form-select col" name="sTime" id="sTime" disabled>
+                        <option value="1">9:00</option>
+                        <option value="2">11:00</option>
+                        <option value="3">14:00</option>
+                      </select>
+                    </div>
                 </div>
                 <br>
                 
@@ -117,19 +138,29 @@
             <div class="modal-body">
               <form id="details-form">
                 <!-- Request Date -->
-                <div class="form-group">
-                    <label for="sDate" class="form-label fw-bold">Consultation Date:</label>
-                    <input type="date" class="form-control" id="cDate" name="cDate" disabled>
-                </div>
+                <div class="form-group row">
+                  <div class="col">
+                    <label for="cDate" class="form-label fw-bold">Consultation Date:</label>
+                    <input type="date" class="form-control col" id="cDate" name="cDate" disabled>
+                  </div>
+                  <div class="col">
+                    <label for="cTime" class="form-label fw-bold">Time:</label>
+                    <select class="form-select col" name="cTime" id="cTime" disabled>
+                      <option value="1">9:00</option>
+                      <option value="2">11:00</option>
+                      <option value="3">14:00</option>
+                    </select>
+                  </div>
+              </div>
                 <br>
                 
                 <!-- Service -->
-                <label for="sService" class="form-label fw-bold">Service:</label>
+                <label for="cService" class="form-label fw-bold">Service:</label>
                 <input type="text" class="form-control" id="cService" name="cService" disabled>
                 <br>
                 
                 <!-- Doctor -->
-                <label for="sDoctor" class="form-label fw-bold">Assigned doctor:</label>
+                <label for="cDoctor" class="form-label fw-bold">Assigned doctor:</label>
                 <input type="text" class="form-control" id="cDoctor" name="cDoctor" disabled>
                 <hr>
                 

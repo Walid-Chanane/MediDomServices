@@ -28,12 +28,6 @@ public class EmployeeServiceImpl implements EmployeeService{
         }
 
     @Override
-    public void deleteRequestById(String email,int theId) {
-        Employee employee = employeeRepository.findByEmail(email);
-        employee.getRequests().removeIf(i -> i.getRequest_id() == theId);
-    }
-
-    @Override
     public ConsultationRequest getRequestById(String email, int theId) {
         Employee employee = employeeRepository.findByEmail(email);
         return employee.getRequests().stream().filter(i -> i.getRequest_id() == theId).findFirst().get();

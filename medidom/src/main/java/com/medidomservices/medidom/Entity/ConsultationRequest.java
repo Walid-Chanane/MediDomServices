@@ -31,6 +31,8 @@ public class ConsultationRequest {
 
     private Date requestDate;
 
+    private int requestTime;
+
     @Enumerated(EnumType.ORDINAL)
     private Specialty service;
 
@@ -52,8 +54,9 @@ public class ConsultationRequest {
     @JoinColumn(name = "report_id")
     private Report report;
 
-    public ConsultationRequest(Date requestDate, Specialty service) {
+    public ConsultationRequest(Date requestDate, int requestTime, Specialty service) {
         this.requestDate = requestDate;
+        this.requestTime = requestTime;
         this.service = service;
         this.done = false;
     }

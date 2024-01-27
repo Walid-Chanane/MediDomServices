@@ -65,6 +65,7 @@ return htmlText;
 
 function addRequest (){
    let Rdate = document.getElementById("RDate").value
+   let time = document.getElementById("aTime").value
    let tservice = document.getElementById("aService").value
 //   if(difTime(Date.parse(Rdate)) >= -1){
       const xhttp = new XMLHttpRequest()
@@ -77,7 +78,7 @@ function addRequest (){
                confirmRequest(request)
             }else console.log("error")
       }
-      let param = JSON.stringify({requestDate : Rdate, service : tservice, done : false})
+      let param = JSON.stringify({requestDate : Rdate, requestTime : time, service : tservice, done : false})
       console.log(param)
       xhttp.send(param)
 //   }
@@ -86,6 +87,7 @@ function addRequest (){
 function confirmRequest(request){
    var confirmationModal = new bootstrap.Modal(document.getElementById('confirmRequest'));
    document.getElementById("cDate").value = request.requestDate
+   document.getElementById("cTime").value = request.requestTime
    document.getElementById("cService").value = request.service
    document.getElementById("cDoctor").value = request.employeeId
    confirmationModal.show();
@@ -98,6 +100,7 @@ function showRequest(theId){
       if(this.status == 200){
          let request = JSON.parse(this.responseText)
          document.getElementById("sDate").value = request.requestDate
+         document.getElementById("sTime").value = request.requestTime
          document.getElementById("sService").value = request.service
          document.getElementById("sDoctor").value = request.employeeId
       }
