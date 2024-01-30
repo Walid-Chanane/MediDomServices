@@ -17,6 +17,7 @@ function loadRequests(){
 
 function cards(requests) {
 const months = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
+const time = ["9:00", "11:00", "14:00"]
 let htmlText = '<div class="container position-absolute start-50 translate-middle-x py-5"><div class="row row-cols-3 g-5" style="width: 98%; margin-left: 6px;">'
    let thisDate
    for (let i in requests) {
@@ -56,7 +57,7 @@ let htmlText = '<div class="container position-absolute start-50 translate-middl
          + '<button value=' + requests[i].request_id +' onclick="currentId=this.value" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" class="btn btn-danger mx-1"><i class="fa-solid fa-trash-can"></i></button>'
          if(requests[i].done == true) htmlText +='<button value=' + requests[i].request_id +' onclick="currentId=this.value" data-bs-toggle="modal" data-bs-target="#report" class="btn btn-primary">Report</button>'
          else htmlText += '<button class="btn btn-primary" disabled>Report</button>'
-         htmlText += '</div></div></div></div></div>'
+            htmlText += '</div><button class="btn bg-dark bg-opacity-50 fw-bold text-light position-absolute start-0 bottom-0 mb-2 mx-2"><h4 class="m-0 p-0">' + time[requests[i].requestTime -1] + '</h4></button></div></div></div></div>'
       }
    }
    htmlText += '</div></div>';
